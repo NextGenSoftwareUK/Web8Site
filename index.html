@@ -32,8 +32,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:fl
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{color:var(--text);text-decoration:none;font-size:13px;letter-spacing:.12em;font-weight:600;transition:color .2s}
 .nav-links a:hover{color:var(--aqua)}
+@media(max-width:900px){.nav-links li{padding:10px 0;border-bottom:1px solid rgba(0,200,83,.08)}.nav-links li:last-child{border-bottom:none}}
 .nav-cta{background:transparent;border:1px solid var(--aqua);color:var(--aqua);padding:8px 22px;border-radius:4px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;cursor:pointer;text-decoration:none;transition:all .2s}
 .nav-cta:hover{background:var(--aqua-dim)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--aqua);border-radius:2px}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+}
 
 /* Hero */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px}
@@ -136,6 +144,37 @@ footer a:hover,.foot-col ul li a:hover{color:var(--aqua);filter:drop-shadow(0 0 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(24px)}
 .reveal.revealed{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+
+/* Responsive grids & cards */
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  section{padding:72px 20px}
+  .features-grid,.civ-grid,.principle-grid{grid-template-columns:1fr 1fr!important}
+  .feat-card{padding:26px}
+  .layer-row{padding:12px 16px;gap:12px}
+  .layer-name{font-size:12px}
+}
+@media(max-width:720px){
+  .features-grid,.civ-grid,.principle-grid{grid-template-columns:1fr!important}
+  .feat-card{padding:22px}
+  .feat-title{font-size:13px}
+  .feat-desc{font-size:14px}
+  .unity-box{padding:32px}
+  .layer-row{flex-wrap:wrap;gap:8px}
+  .layer-name{flex:1 1 100%;order:1}
+  .stack-row{flex-wrap:wrap}
+}
+@media(max-width:520px){
+  section{padding:56px 16px}
+  .feat-card{padding:18px}
+  .feat-title{font-size:12px}
+  .feat-desc{font-size:13px}
+  .civ-card{padding:18px 14px}
+  .principle-card{padding:20px}
+  .unity-box{padding:22px}
+  .unity-quote{margin-bottom:14px}
+  .layer-num{width:auto}
+}
 </style>
 </head>
 <body>
@@ -148,9 +187,11 @@ footer a:hover,.foot-col ul li a:hover{color:var(--aqua);filter:drop-shadow(0 0 
     <li><a href="#what">WHAT IS WEB8</a></li>
     <li><a href="#network">NETWORK</a></li>
     <li><a href="#features">FEATURES</a></li>
+    <li><a href="#principles">PRINCIPLES</a></li>
     <li><a href="#unity">UNITY</a></li>
   </ul>
   <a href="https://oasisomniverse.one" class="nav-cta" target="_blank" rel="noopener">ECOSYSTEM</a>
+  <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
 <section class="hero">
@@ -417,7 +458,7 @@ footer a:hover,.foot-col ul li a:hover{color:var(--aqua);filter:drop-shadow(0 0 
 
 <hr class="divider"/>
 
-<section>
+<section id="principles">
   <div class="section-inner">
     <div class="section-badge reveal">WEB8 · CORE PRINCIPLES</div>
     <h2 class="section-title reveal">The Four Laws<br/>of the Galactic Mesh</h2>
@@ -605,6 +646,31 @@ footer a:hover,.foot-col ul li a:hover{color:var(--aqua);filter:drop-shadow(0 0 
   window.addEventListener('resize',()=>{resize()});
   init();draw();
 })();
+
+// Hamburger menu
+function toggleMenu(){
+  const nav=document.querySelector('.nav-links');
+  const open=nav.style.display==='flex';
+  if(open){
+    nav.style.display='none';
+  }else{
+    nav.style.display='flex';
+    nav.style.position='absolute';
+    nav.style.top='100%';
+    nav.style.left='0';
+    nav.style.right='0';
+    nav.style.flexDirection='column';
+    nav.style.gap='0';
+    nav.style.background='rgba(3,7,20,.97)';
+    nav.style.padding='12px 24px';
+    nav.style.borderBottom='1px solid rgba(0,200,83,.15)';
+  }
+}
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    if(window.innerWidth<=900){document.querySelector('.nav-links').style.display='none'}
+  });
+});
 
 // Reveal
 const observer=new IntersectionObserver(entries=>{
