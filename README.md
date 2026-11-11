@@ -9,7 +9,7 @@ OASIS WEB8 is the inter-galactic layer — Earth unified as a single coherent no
 WEB8 extends the OASIS unification stack beyond Earth:
 
 - **Earth as a node** — all of Earth's WEB4-unified identity, karma and data becomes a single coherent signal in the galactic network
-- **Galactic protocol translation** — WEB8 abstracts over the communication and data protocols of any civilisation, just as WEB4 abstracts over Earth's 40+ providers
+- **Galactic protocol translation** — WEB8 abstracts over the communication and data protocols of any civilisation, just as WEB4 provides a common API for supported Web2 and Web3 services across an [inventory of 234 provider projects](https://web4.oasisomniverse.one/providers.html)
 - **Fractal holonic architecture** — the same holonic pattern that structures OASIS data (avatars → communities → nations → Earth) extends to (Earth → solar systems → galaxies → universe)
 - **First contact protocol** — a framework for establishing shared understanding with any intelligence capable of exchanging structured information
 
